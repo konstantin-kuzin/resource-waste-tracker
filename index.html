@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Стоимость встречи</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Victor+Mono:wght@400;600&family=Roboto:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <div class="app__toolbar">
+        <button
+          type="button"
+          class="icon-btn"
+          id="theme-toggle"
+          aria-label="Включить тёмную тему"
+          title="Включить тёмную тему"
+        >
+          <span aria-hidden="true" data-role="theme-icon">☾</span>
+        </button>
+        <button
+          type="button"
+          class="icon-btn"
+          id="settings-trigger"
+          aria-label="Открыть настройки"
+          aria-haspopup="dialog"
+          aria-controls="settings-modal"
+        >
+          <span aria-hidden="true">⚙</span>
+        </button>
+      </div>
+
+      <section class="meter" aria-live="polite">
+        <div class="meter__scroll">
+          <h1 class="app__title" id="app-title">Лаборатория Касперского заплатит за эту встречу</h1>
+          <p class="meter__total">
+            <span class="meter__value" id="total-cost">
+              <span class="meter__rub" id="total-rub">0</span>
+              <span class="meter__fraction">
+                <span class="meter__kop" id="total-kop">00</span>
+                <span class="meter__fraction-line" aria-hidden="true"></span>
+                <span class="meter__rub-label">руб</span>
+              </span>
+            </span>
+          </p>
+        </div>
+        <p class="meter__per-minute" id="per-minute-row" hidden>
+          Одна минута этой встречи стоит
+          <span class="meter__per-minute-value" id="per-minute-cost">0.00</span>
+          руб.
+        </p>
+        <div class="meter__elapsed" id="elapsed-row" hidden>
+          
+          <button
+            type="button"
+            class="meter__start-trigger"
+            id="start-time-trigger"
+            aria-expanded="false"
+            aria-controls="start-time-popover"
+          >
+          Продолжительность встречи
+          </button>
+          — <span id="elapsed-display">00:00</span>
+          <div id="start-time-popover" class="start-popover" role="dialog" aria-label="Время начала встречи" hidden>
+            <label class="start-popover__label" for="start-time-input">Начало встречи</label>
+            <input type="time" class="start-popover__input" id="start-time-input" step="60" />
+            <div class="start-popover__actions">
+              <button type="button" class="start-popover__btn start-popover__btn--primary" id="start-time-save">
+                Сохранить
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grades" aria-label="Участники по грейдам" id="grades-list"></section>
+
+      <div class="modal" id="settings-modal" hidden>
+        <div class="modal__backdrop" data-modal-close="true"></div>
+        <div
+          class="modal__dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="settings-title"
+        >
+          <div class="modal__header">
+            <div>
+              <h2 class="modal__title" id="settings-title">Настройки</h2>
+            </div>
+            <button
+              type="button"
+              class="icon-btn icon-btn--ghost"
+              id="settings-close"
+              aria-label="Закрыть настройки"
+            >
+              <span aria-hidden="true">✕</span>
+            </button>
+          </div>
+
+          <form class="settings-form" id="settings-form">
+            <label class="settings-form__field">
+              <span class="settings-form__label">Текст заголовка</span>
+              <input
+                type="text"
+                class="settings-form__input"
+                id="settings-title-input"
+                name="title"
+                placeholder="Введите заголовок"
+                required
+              />
+            </label>
+
+            <div class="settings-form__section">
+              <div class="settings-form__grades" id="settings-grades"></div>
+              <button type="button" class="text-btn" id="add-grade-btn">Добавить</button>
+            </div>
+
+            <div class="settings-form__actions">
+              <button type="submit" class="primary-btn">Сохранить</button>
+              <button type="button" class="secondary-btn" id="settings-cancel">Отмена</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="app.js" defer></script>
+  </body>
+</html>
