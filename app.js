@@ -262,6 +262,12 @@
     roundsUnlocked = false;
   }
 
+  function syncRoundsWithMeetingStart() {
+    if (meetingStartWallMs == null || rounds.length === 0) return;
+
+    rounds[0].startMs = meetingStartWallMs;
+  }
+
   function ensureInitialRound() {
     if (meetingStartWallMs == null || rounds.length > 0) return;
 
@@ -582,8 +588,9 @@
 
     if (isNaN(hours) || isNaN(minutes)) return;
 
-    meetingStartWallMs = wallMsFromTimeInput(hours, minutes);
-    resetRounds();
+    var nextMeetingStartWallMs = wallMsFromTimeInput(hours, minutes);
+    meetingStartWallMs = nextMeetingStartWallMs;
+    syncRoundsWithMeetingStart();
     ensureInitialRound();
     closeStartPopover();
     renderRounds();

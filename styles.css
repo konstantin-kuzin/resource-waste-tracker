@@ -15,6 +15,7 @@
   --muted: #8b93a7;
   --accent: #5b8cff;
   --accent-strong: #88a9ff;
+  --accent-soft: #c6d4f6;
   --danger: #e85d5d;
   --grade-avatar-green: #22c55e;
   --grade-avatar-green-fg: #4ade80;
@@ -40,6 +41,7 @@
     --tertiary: #a5acb9;
     --accent: #2f6fed;
     --accent-strong: #4b84f0;
+    --accent-soft: #ebf1fe;
     --danger: #c53030;
     --grade-avatar-green-fg: #15803d;
     --border: rgba(26, 29, 38, 0.08);
@@ -59,6 +61,7 @@
   --tertiary: #a5acb9;
   --accent: #5b8cff;
   --accent-strong: #88a9ff;
+  --accent-soft: #132757;
   --danger: #e85d5d;
   --grade-avatar-green-fg: #4ade80;
   --border: rgba(255, 255, 255, 0.08);
@@ -561,8 +564,8 @@ body.body--modal-open {
   display: block;
   font-size: 0.8125rem;
   font-weight: 600;
-  margin: 0 0 0.35rem;
   color: var(--muted);
+  margin-bottom: .3rem;
 }
 
 .start-popover__input,
@@ -574,6 +577,7 @@ body.body--modal-open {
   background: color-mix(in srgb, var(--surface-soft) 100%, var(--surface-strong));
   color: var(--text);
   font: inherit;
+  margin-bottom: .3rem;
 }
 
 .settings-form__input--compact {
@@ -610,7 +614,7 @@ body.body--modal-open {
 .start-popover__btn--primary,
 .primary-btn {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-  background: color-mix(in srgb, var(--accent) 26%, var(--surface-strong));
+  background: var(--accent-soft);
   color: var(--text);
 }
 
